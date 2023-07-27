@@ -1,7 +1,6 @@
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import org.example.Client;
 import org.example.courier.Courier;
 import org.example.courier.CourierAssertions;
 import org.example.courier.CourierClient;

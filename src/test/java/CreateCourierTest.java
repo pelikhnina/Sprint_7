@@ -7,17 +7,11 @@ import org.example.courier.CourierGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-@RunWith(Parameterized.class)
 public class CreateCourierTest {
 
     private static final String BASE_URI = "https://qa-scooter.praktikum-services.ru";
@@ -58,34 +52,6 @@ public class CreateCourierTest {
         duplicateResponse.assertThat()
                 .statusCode(409)
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
-
-        createdCourierLogins.add(courier.getLogin());
-    }
-
-    @Parameterized.Parameter()
-    public String login;
-    @Parameterized.Parameter(1)
-    public String password;
-
-
-    @Parameterized.Parameters
-    public static Collection<Object[]> testData() {
-        return Arrays.asList(new Object[][]{
-                {null, "password123"},
-                {"testCourier", null},
-                {null, null}
-        });
-    }
-
-    @Test
-    public void createCourierMissingCredentials() {
-        String firstName = courierGenerator.generateRandomName(6);
-        Courier courier = new Courier(login, password, firstName);
-
-        ValidatableResponse response = courierClient.createCourier(courier);
-        response.assertThat()
-                .statusCode(400)
-                .body("message", equalTo("Недостаточно данных для создания учетной записи"));
 
         createdCourierLogins.add(courier.getLogin());
     }

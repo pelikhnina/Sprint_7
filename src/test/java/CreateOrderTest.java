@@ -1,8 +1,6 @@
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import org.example.Client;
 import org.example.order.Order;
-//import org.example.order.OrderAssertions;
 import org.example.order.OrderAssertions;
 import org.example.order.OrderClient;
 import org.example.order.OrderGenerator;
@@ -18,7 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 @RunWith(Parameterized.class)
 public class CreateOrderTest {
@@ -27,7 +24,7 @@ public class CreateOrderTest {
     private static final String API_V1 = "/api/v1";
     private final OrderClient orderClient = new OrderClient();
     private final OrderGenerator orderGenerator = new OrderGenerator();
-    private Set<Integer> createdOrderTracks = new HashSet<>();
+    private final Set<Integer> createdOrderTracks = new HashSet<>();
 
     @Parameterized.Parameter
     public String[] colors;
