@@ -27,16 +27,7 @@ public class ListOrdersTest {
         given().baseUri(BASE_URI).basePath(API_V1).contentType(ContentType.JSON).when().get("/ping").then().statusCode(200);
     }
 
-    @After
-    public void cleanup() {
-        for (Integer track : createdOrderTracks) {
-            orderClient.cancelOrder(track);
-        }
 
-        for (String login : createdCourierLogins) {
-            courierClient.deleteCourier(login);
-        }
-    }
 
     @Test
     public void listOrdersTest() {
