@@ -12,7 +12,7 @@ public class ListOrdersTest {
 
     private static final String BASE_URI = "https://qa-scooter.praktikum-services.ru";
     private static final String API_V1 = "/api/v1";
-        private final OrderClient orderClient = new OrderClient();
+    private final OrderClient orderClient = new OrderClient();
 
     @Before
     public void setup() {
